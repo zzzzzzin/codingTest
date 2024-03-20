@@ -1,32 +1,37 @@
 package bruteForceSearch;
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.Random;
+import java.util.StringTokenizer;
 
 public class Q1912 {
-	public static int n; //입력할 정수의 갯수
-	public static int maxSum = 0; //최댓값
-	public static int currentSum = 0; //연속하는 수의 합
+	static int N;
+	static int[] arr;
+	static int[] dp;
+	static int max;
 	
 	public static void main(String[] args) throws NumberFormatException, IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-
-		int n= Integer.parseInt(br.readLine());
-		String[] input = br.readLine().split(" ");
-		Random r = new Random();
 		
-		int[] arr = new int[n];
-		for (int i=0; i<n; i++) {
-			arr[i] = Integer.parseInt(input[i]);
+		N = Integer.parseInt(br.readLine());
+		
+		StringTokenizer st = new StringTokenizer(br.readLine());
+		arr = new int[N];
+		dp = new int[N];
+		
+		for(int i=0; i<N; i++) {
+			arr[i] = Integer.parseInt(st.nextToken());
 		}
 		
-		for (int i=1; i<n; i++) {
-			currentSum = Math.max(arr[i], currentSum + arr[i]);
-			
-			maxSum = Math.max(maxSum, currentSum); 
+		dp[0] = arr[0];
+		max = arr[0];
+		
+		for(int i=1; i<N; i++) {
+			dp[i] = Math.max(dp[i-1]+arr[i], arr[i]);
+			max = Math.max(max, dp[i]);
 		}
-		System.out.println(maxSum);
+		
+		System.out.println(max);
+		
 	}
 }

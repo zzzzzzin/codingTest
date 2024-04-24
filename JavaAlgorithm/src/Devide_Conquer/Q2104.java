@@ -1,41 +1,49 @@
 package Devide_Conquer;
-
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.util.Arrays;
-import java.util.StringTokenizer;
+import java.util.Scanner;
 
 public class Q2104 {
-	
-	public static int N; //배열의 크기
-	public static int i; //점수 범위 시작 인덱스
-	public static int j; //점수 범위 끝 인덱스
-	public static int result; //부분배열의 최댓값
-	
-	public static int max(int[] list) {
-		int max = 0;
-		int index = list.length;
-		for(int k=0; k<list.length; k++) {
-			
-		}
-		
-		return result;
-	}
 
-	public static void main(String[] args) throws IOException {
-		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-		N = Integer.parseInt(br.readLine());
+    static long[] A;
 
-		int[] list = new int [N];
+    static long func(int s, int e) {
+        if (s == e) {
+            return A[s] * A[s];
+        }
+        int mid = (s + e) / 2;
+        long result = 0;
+        result = Math.max(func(s, mid), func(mid + 1, e));
+        long V = A[mid];
+        long min = A[mid];
+        int l = mid;
+        int r = mid;
+        while (l > s || r < e) {
+            long p = l > s ? A[l - 1] : -1; // 왼쪽으로 갔을때 값
+            long q = r < e ? A[r + 1] : -1; // 오른쪽으로 갔을때 값
+            if (p >= q) { // 왼쪽으로 감
+                V = V + p;
+                if (min > p && p != -1) {
+                    min = p;
+                }
+                l--;
+            } else { // 오른쪽으로 감
+                V = V + q;
+                if (min > q && q != -1) {
+                    min = q;
+                }
+                r++;
+            }
+            result = Math.max(result, V * min);
+        }
+        return result;
+    }
 
-		StringTokenizer st = new StringTokenizer(br.readLine()); 
-		for (int i=0; i<N; i++) {
-			list[i] = Integer.parseInt(st.nextToken());
-		}
-		
-		System.out.println(max(list));
-		
-	}
-
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        int N = scanner.nextInt();
+        A = new long[N];
+        for (int i = 0; i < N; i++) {
+            A[i] = scanner.nextLong();
+        }
+        System.out.println(func(0, N - 1));
+    }
 }

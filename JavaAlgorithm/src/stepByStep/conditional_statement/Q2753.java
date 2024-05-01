@@ -1,22 +1,23 @@
-package stepByStep.Input_output_arithmetic_operations;
+package stepByStep.conditional_statement;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-public class Q18108 {
+public class Q2753 {
 	
-	private static int y;
+	private static int year;
 	private static int result;
-
+	
 	public static void main(String[] args) throws IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		
-		y = Integer.parseInt(br.readLine());
+		year = Integer.parseInt(br.readLine());
 		
-		result = y - 543;
+		if( (year%4 == 0) && ((year%100 != 0) || (year%400 == 0))) result = 1;
+		else result = 0;
 		
 		System.out.println(result);
-		
 	}
+
 }

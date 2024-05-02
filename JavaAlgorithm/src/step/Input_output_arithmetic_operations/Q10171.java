@@ -1,4 +1,4 @@
-package stepByStep.Input_output_arithmetic_operations;
+package step.Input_output_arithmetic_operations;
 
 public class Q10171 {
 	

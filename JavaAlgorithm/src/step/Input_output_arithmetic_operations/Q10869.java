@@ -1,4 +1,4 @@
-package stepByStep.Input_output_arithmetic_operations;
+package step.Input_output_arithmetic_operations;
 
 import java.io.BufferedReader;
 import java.io.IOException;

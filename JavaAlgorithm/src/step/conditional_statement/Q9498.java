@@ -1,4 +1,4 @@
-package stepByStep.conditional_statement;
+package step.conditional_statement;
 
 import java.io.BufferedReader;
 import java.io.IOException;
